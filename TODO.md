@@ -8,6 +8,10 @@ my thoughts on how to implement the project
 React app
 
 - [ ] Chat to ui mange with useChat store
+- [ ] Supabase Auth
+  - [ ] Login
+  - [ ] Logout
+  - [ ] getAccessToken
 - [ ] Api layer to all outgoing requests
   - [ ] JWT authorization headers
   - [ ] send file to server | POST
@@ -23,13 +27,11 @@ React app
   - [ ] loading
   - [ ] uploading file type=[pdf, img]
   - [ ] Custom Context menu to download file or view file
-- [ ] Loading
 - [ ] Error handling / Error boundary
 - [ ] Tests
   - [ ] Unit tests
   - [ ] Integration tests
 - [ ] Docker
-- [ ] Supabase Auth
 - [ ] Deployment
 
 ## server
