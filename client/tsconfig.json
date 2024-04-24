@@ -26,7 +26,8 @@
       "@css/*": ["./src/css/*"],
       "@constants/*": ["./src/constants/*"],
       "@utils/*": ["./src/utils/*"],
-      "@types/*": ["./src/types/*"]
+      "@types/*": ["./src/types/*"],
+      "@api/*": ["./src/api/*"]
     }
   },
   "include": ["src"],
