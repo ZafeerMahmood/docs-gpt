@@ -1,4 +1,3 @@
-//Main page of the app
 function App() {
   return (
     <>

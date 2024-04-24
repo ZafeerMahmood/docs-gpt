@@ -22,12 +22,14 @@
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@css/*": ["./src/css/*"],
+      "@layout/*": ["./src/layout/*"],
       "@constants/*": ["./src/constants/*"],
-      "@utils/*": ["./src/utils/*"],
       "@types/*": ["./src/types/*"],
-      "@api/*": ["./src/api/*"]
+      "@api/*": ["./src/api/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@css/*": ["./src/css/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@hooks/*": ["./src/hooks/*"]
     }
   },
   "include": ["src"],
