@@ -20,14 +20,13 @@ React app
   - [ ] download file | GET
 - [ ] husky pre-commit hooks
 - [ ] UI components
-  - [ ] Toast
   - [ ] Alerts
-  - [ ] ChatMessage
-  - [ ] ChatInput
-  - [ ] loading
+  - [x] ChatMessage
+  - [x] ChatInput
+  - [x] loading
   - [ ] uploading file type=[pdf, img]
   - [ ] Custom Context menu to download file or view file
-- [ ] Error handling / Error boundary
+- [x] Error handling / Error boundary
 - [ ] Tests
   - [ ] Unit tests
   - [ ] Integration tests
@@ -38,7 +37,7 @@ React app
 
 Flask app
 
-- [ ] Project structure For flask
+- [x] Project structure For flask
 - [ ] Requirement.txt
 - [ ] JWT validation
 - [ ] DB {supabase}

@@ -46,7 +46,6 @@ function ChatInput() {
           className=""
           onClick={() => {
             if (!inputValue) return;
-            chatMethods.bot(inputValue);
             chatMethods.user(inputValue);
             setInputValue("");
           }}
