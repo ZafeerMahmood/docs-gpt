@@ -5,7 +5,7 @@ function Navbar() {
   const setModel = useModelStore((state) => state.setModel);
   const model = useModelStore((state) => state.model);
   return (
-    <nav className="navbar bg-base-300">
+    <nav className="navbar bg-base-300 ">
       <div className="navbar-start px-5">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn m-1">

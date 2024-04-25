@@ -29,7 +29,8 @@
       "@lib/*": ["./src/lib/*"],
       "@css/*": ["./src/css/*"],
       "@utils/*": ["./src/utils/*"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@icons/*": ["./src/components/icons/*"]
     }
   },
   "include": ["src"],
