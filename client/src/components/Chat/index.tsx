@@ -11,7 +11,7 @@ function Chat() {
   };
   return (
     <div className="w-full h-full">
-      <div className="">
+      <div className="p-10">
         <div className="mb-28">
           {chatStore.map((msg, index) => (
             <div

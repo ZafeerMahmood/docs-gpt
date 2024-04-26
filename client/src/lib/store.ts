@@ -1,10 +1,6 @@
 import { create } from "zustand";
-import { IModalStore, IAppTheme, IMessage } from "@/types";
-
-interface modelStore {
-  model: IModalStore;
-  setModel: (model: IModalStore) => void;
-}
+import { IAppTheme, IMessage } from "@/types";
+import { User } from "@supabase/supabase-js";
 
 interface themeStore {
   theme: IAppTheme;
@@ -15,6 +11,16 @@ interface chatStore {
   chat: IMessage[];
   setChat: (chat: IMessage) => void;
 }
+
+interface userStore {
+  user: User | null | undefined;
+  setUser: (user: User | null | undefined) => void;
+}
+
+export const useUserStore = create<userStore>((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
+}));
 
 export const useChatStore = create<chatStore>((set) => ({
   /*Initial state of the chat
@@ -31,12 +37,5 @@ export const useThemeStore = create<themeStore>((set) => ({
   theme: "dark",
   setTheme: (theme) => {
     set({ theme });
-  },
-}));
-
-export const useModelStore = create<modelStore>((set) => ({
-  model: "llava",
-  setModel: (model) => {
-    set({ model });
   },
 }));

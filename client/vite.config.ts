@@ -23,6 +23,7 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "./src/utils"),
       "@hooks": path.resolve(__dirname, "./src/hooks"),
       "@icons": path.resolve(__dirname, "./src/components/icons"),
+      "@auth": path.resolve(__dirname, "./src/auth"),
     },
   },
 });

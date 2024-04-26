@@ -30,7 +30,8 @@
       "@css/*": ["./src/css/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@icons/*": ["./src/components/icons/*"]
+      "@icons/*": ["./src/components/icons/*"],
+      "@auth/*": ["./src/auth/*"]
     }
   },
   "include": ["src"],

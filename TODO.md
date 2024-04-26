@@ -7,11 +7,10 @@ my thoughts on how to implement the project
 
 React app
 
-- [ ] Chat to ui mange with useChat store
-- [ ] Supabase Auth
-  - [ ] Login
-  - [ ] Logout
-  - [ ] getAccessToken
+- [x] Chat to ui mange with useChat store
+- [x] Supabase Auth
+  - [x] Login
+  - [x] getAccessToken
 - [ ] Api layer to all outgoing requests
   - [ ] JWT authorization headers
   - [ ] send file to server | POST
@@ -63,17 +62,24 @@ Flask app
 llm's to implement
 
 - [ ] OpenAI GPT
-- [ ] Ollama
+- [ ] Ollama |llava vision model
 - [ ] llama
 
 ## overall
 
 - [ ] Documentation
 - [ ] README
-- [ ] CI/CD
 - [ ] docker-compose
+- [ ] startup scripts
+  - [ ] one for that requires to clone and .env file | ignore that
+  - [ ] one for that requires to run docker-compose up in end run a startup script to create user and load data
 - [ ] Deployment
   - [ ] as a single flask that returns react build dist
   - or
   - [ ] separate app for client and server
   - Note sure for now
+
+## Auth Test
+
+Email : <zafeer746@gmail.com>
+Password : 123456
