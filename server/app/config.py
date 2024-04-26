@@ -8,3 +8,5 @@ class Config:
     SUPABASE_URL = os.getenv('SUPABASE_URL')
     SUPABASE_JWT = os.getenv('SUPABASE_JWT')
     SUPABASE_ANON = os.getenv('SUPABASE_ANON')
+    # TODO add more configurations here
+    # api key of llama

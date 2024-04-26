@@ -33,8 +33,8 @@ React app
 Flask app
 
 - [x] Project structure For flask
-- [ ] Requirement.txt
-- [ ] JWT validation
+- [x] Requirement.txt
+- [x] JWT validation
 - [ ] DB { supabase }
   - [ ] User table
     - [ ] user_name
