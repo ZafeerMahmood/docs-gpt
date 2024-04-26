@@ -20,7 +20,7 @@ def hello():
 @app.route(f'{API_VERSION}/upload', methods=['POST'])
 @check_jwt
 def upload():
-    try 
+    try :
     # TODO: Implement file upload
     # file will be a pdf parse the pdf into text
     # save the text into a database
@@ -46,7 +46,7 @@ def get_files():
 
 
 # Protected route
-# a route to return a respons form llm based on the request
+# a route to return a response form llm based on the request
 @app.route(f'{API_VERSION}/llm', methods=['GET'])
 @check_jwt
 def llm():
@@ -54,7 +54,7 @@ def llm():
     # TODO: Implement file upload
 
     ## pass the question to the llm and return the response
-    ## make a regx function to hide sensitive information.
+    ## make a regex function to hide sensitive information.
         return jsonify({
             "message": 'llm'
         }), 200
