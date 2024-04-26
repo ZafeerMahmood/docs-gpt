@@ -9,7 +9,7 @@ API_VERSION = Config.API_VERSION
 def hello():
     db='connected'
     llm='connected'
-    return jsonify({
+    return jsonify({ 
         "server": 'running',
         "version": '1.0.0',
         "message": "Hello World!",
@@ -20,23 +20,29 @@ def hello():
 @app.route(f'{API_VERSION}/upload', methods=['POST'])
 @check_jwt
 def upload():
+    try 
     # TODO: Implement file upload
     # file will be a pdf parse the pdf into text
     # save the text into a database
     # make a query of text to send to local language model
 
-    return jsonify({
-        "message": 'File uploaded successfully'
-    }), 200
+        return jsonify({
+            "message": 'File uploaded successfully'
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route(f'{API_VERSION}/files', methods=['GET'])
 @check_jwt
 def get_files():
+    try:
     # TODO: Implement file upload
     # files from db and return them.
-    return jsonify({
-        "message": 'Files retrieved successfully'
-    }), 200
+        return jsonify({
+            "message": 'Files retrieved successfully'
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 # Protected route
@@ -44,11 +50,15 @@ def get_files():
 @app.route(f'{API_VERSION}/llm', methods=['GET'])
 @check_jwt
 def llm():
+    try:
     # TODO: Implement file upload
 
     ## pass the question to the llm and return the response
     ## make a regx function to hide sensitive information.
-    return jsonify({
-        "message": 'llm'
-    }), 200
+        return jsonify({
+            "message": 'llm'
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 

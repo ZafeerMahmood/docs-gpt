@@ -1,7 +1,6 @@
 from app import app
 from app.config import Config 
 
-
 if Config.SUPABASE_ANON is None:
     raise Exception('SUPABASE_ANON not found in .env file')
 

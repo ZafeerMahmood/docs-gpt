@@ -32,26 +32,6 @@ React app
 
 Flask app
 
-- [x] Project structure For flask
-- [x] Requirement.txt
-- [x] JWT validation
-- [ ] DB { supabase }
-  - [ ] User table
-    - [ ] user_name
-    - [ ] files [file_id]
-    - [ ] File block storage
-- [ ] Message table | Not sure to implement this or not | it can be done in client local storage
-
-- [ ] Api layer
-  - [ ] send message | POST params=[message, file, user_id,context?] call Ollama | gpt model | any llm
-  - [ ] upload file | POST
-  - [ ] get All files | GET
-  - [ ] download file | GET
-- [ ] Dockerfile
-- [ ] Tests
-  - [ ] Unit tests
-- [ ] Deployment
-
 ## LLM
 
 llm's to implement
