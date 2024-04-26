@@ -16,13 +16,18 @@ function ChatInput() {
     scrollToBottom();
   }, [chatStore]);
 
+  const handleUserInput = () => {
+    if (!inputValue) return;
+    chatMethods.user(inputValue);
+    setInputValue("");
+    //call api here
+    //plus loading state update.
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      if (!inputValue) return;
-      chatMethods.bot(inputValue);
-      chatMethods.user(inputValue);
-      setInputValue("");
+      handleUserInput();
     }
   };
 
@@ -42,14 +47,7 @@ function ChatInput() {
             <UploadIcon />
           </kbd>
         </button>
-        <button
-          className=""
-          onClick={() => {
-            if (!inputValue) return;
-            chatMethods.user(inputValue);
-            setInputValue("");
-          }}
-        >
+        <button className="" onClick={handleUserInput}>
           <kbd className="kbd kbd-md border-accent">↵</kbd>
         </button>
       </label>

@@ -7,7 +7,7 @@ const ErrorPage = ({ resetErrorBoundary }: FallbackProps) => {
         Oh no, something went wrong... maybe refresh?
       </h1>
       <button className="btn btn-primary" onClick={resetErrorBoundary}>
-        Reset?
+        Refresh?
       </button>
     </div>
   );
