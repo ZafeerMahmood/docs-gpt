@@ -11,20 +11,16 @@ React app
 - [x] Supabase Auth
   - [x] Login
   - [x] getAccessToken
-- [ ] Api layer to all outgoing requests
-  - [ ] JWT authorization headers
+- [x] Api layer to all outgoing requests
+  - [x] JWT authorization headers
   - [ ] send file to server | POST
   - [ ] send message | POST params=[message, file, user_id,context?]
   - [ ] get All files | GET
-  - [ ] download file | GET
 - [ ] husky pre-commit hooks
 - [ ] UI components
-  - [ ] Alerts
   - [x] ChatMessage
   - [x] ChatInput
-  - [x] loading
-  - [ ] uploading file type=[pdf, img]
-  - [ ] Custom Context menu to download file or view file
+  - [x] uploading file type=[pdf]
 - [x] Error handling / Error boundary
 - [ ] Tests
   - [ ] Unit tests
@@ -53,6 +49,7 @@ Flask app
   - [ ] download file | GET
 - [ ] Database Supabase
 - [ ] Docker
+
 - [ ] Tests
   - [ ] Unit tests
 - [ ] Deployment
@@ -61,9 +58,9 @@ Flask app
 
 llm's to implement
 
-- [ ] OpenAI GPT
-- [ ] Ollama |llava vision model
-- [ ] llama
+- [ ] OpenAI GPT | expensive not feasible.
+- [ ] Ollama | llaVa vision model | difficult to deploy on any free service.
+- [ ] llama | Most likely to implement provides $5 free credit.
 
 ## overall
 
