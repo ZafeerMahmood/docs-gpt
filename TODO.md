@@ -39,6 +39,7 @@ llm's to implement
 - [ ] OpenAI GPT | expensive not feasible.
 - [ ] Ollama | llaVa vision model | difficult to deploy on any free service.
 - [ ] llama | Most likely to implement provides $5 free credit.
+- [ ] turn out llama can't keep the context by itself, need to implement that.
 
 ## overall
 
