@@ -6,7 +6,6 @@ from flask import request
 
 def verify_token(token):
     try:
-        print(Config.SUPABASE_JWT)
         decoded_data = jwt.decode(jwt=token,key=Config.SUPABASE_JWT, algorithms=["HS256"],options={"verify_aud": False})
         return decoded_data
     except Exception as e:

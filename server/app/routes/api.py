@@ -1,5 +1,5 @@
 from app import app
-from flask import jsonify
+from flask import jsonify, request
 from app.config import Config
 from app.utils import check_jwt
 
@@ -17,20 +17,25 @@ def hello():
         "llm": llm
     }), 200
 
+
+# TODO: Implement file upload
+# file will be a pdf parse the pdf into text
+# save the text into a database
+# make a query of text to send to local language model
 @app.route(f'{API_VERSION}/upload', methods=['POST'])
 @check_jwt
 def upload():
-    try :
-    # TODO: Implement file upload
-    # file will be a pdf parse the pdf into text
-    # save the text into a database
-    # make a query of text to send to local language model
+    if 'file' not in request.files:
+        return jsonify({"error": 'No file part'}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": 'No selected file'}), 400
 
-        return jsonify({
-            "message": 'File uploaded successfully'
-        }), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    # You might want to add code here to save the file or process it.
+
+    return jsonify({
+        "message": 'File uploaded successfully'
+    }), 200
 
 @app.route(f'{API_VERSION}/files', methods=['GET'])
 @check_jwt
@@ -45,20 +50,21 @@ def get_files():
         return jsonify({"error": str(e)}), 500
 
 
-# Protected route
-# a route to return a response form llm based on the request
-@app.route(f'{API_VERSION}/llm', methods=['GET'])
-@check_jwt
+# TODO: Implement file upload
+
+## pass the question to the llm and return the response
+## make a regex function to hide sensitive information.
+@app.route(f'{API_VERSION}/chat', methods=['POST'])
+# @check_jwt
 def llm():
     try:
-    # TODO: Implement file upload
-
-    ## pass the question to the llm and return the response
-    ## make a regex function to hide sensitive information.
+        data = request.json
+        message = data.get('message')
         return jsonify({
-            "message": 'llm'
+            "message": 'llm response'+ ' '+ message
         }), 200
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 500
 
 
