@@ -1,5 +1,4 @@
 import { get, post, uploadFile } from "./layer";
-
 const api = {
   get,
   post,
@@ -8,4 +7,26 @@ const api = {
 
 export default api;
 
-// use api to make requests to the server
+export const uploadFileApi = async (file: FormData) => {
+  try {
+    const response = await api.uploadFile({
+      url: "upload",
+      file,
+    });
+    return response;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const chatApi = async (message: string) => {
+  try {
+    const response = await api.post({
+      url: "chat",
+      data: { message },
+    });
+    return response;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};

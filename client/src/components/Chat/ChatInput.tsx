@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { UploadIcon } from "@icons/upload";
 import { useChat } from "@/hooks/useChat";
 import { useChatStore } from "@/lib/store";
+import { uploadFileApi, chatApi } from "@/api";
 
 function ChatInput() {
   const chatStore = useChatStore((state) => state.chat);
@@ -18,12 +19,17 @@ function ChatInput() {
     scrollToBottom();
   }, [chatStore]);
 
-  const handleUserInput = () => {
+  const handleUserInput = async () => {
     if (!inputValue) return;
     chatMethods.user(inputValue);
     setInputValue("");
-    //call api here
-    //plus loading state update.
+    const response = await chatApi(inputValue);
+    if (response.status === 200) {
+      const data = await response.json();
+      chatMethods.bot(data.message);
+    } else {
+      chatMethods.bot("LLM Error: Please try again later.");
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -33,16 +39,27 @@ function ChatInput() {
     }
   };
 
-  const handleUpload = () => {
-    if (fileRef.current != null) {
+  const handleUpload = async () => {
+    if (fileRef.current) {
       const file = fileRef.current.files ? fileRef.current.files[0] : null;
       if (file) {
-        chatMethods.user(`${file.name} uploaded successfully`);
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          console.log(reader.result);
-        };
-        reader.readAsDataURL(file);
+        const newForm = new FormData();
+        newForm.append("file", file);
+        chatMethods.user(`${file.name} is being uploaded`);
+        try {
+          const response = await uploadFileApi(newForm);
+          if (response.status === 200) {
+            const data = await response.json();
+            chatMethods.bot(data.message);
+          } else {
+            chatMethods.bot("Error uploading file");
+          }
+        } catch (error) {
+          console.error(error);
+          chatMethods.bot("Error uploading file");
+        }
+      } else {
+        chatMethods.bot("No file selected");
       }
     }
   };
@@ -82,5 +99,4 @@ function ChatInput() {
     </div>
   );
 }
-
 export default ChatInput;

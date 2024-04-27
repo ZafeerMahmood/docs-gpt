@@ -19,8 +19,8 @@ export const post = async ({ url, data }: { url: string; data: unknown }) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-      body: JSON.stringify(data),
     },
+    body: JSON.stringify(data), // Move this line outside the headers object
   });
   return response;
 };
