@@ -13,11 +13,11 @@ React app
   - [x] getAccessToken
 - [x] Api layer to all outgoing requests
   - [x] JWT authorization headers
-  - [ ] send file to server | POST
-  - [ ] send message | POST params=[message, file, user_id,context?]
+  - [x] send file to server | POST
+  - [x] send message | POST params=[message, user_id,context]
   - [ ] get All files | GET
 - [ ] husky pre-commit hooks
-- [ ] UI components
+- [x] UI components
   - [x] ChatMessage
   - [x] ChatInput
   - [x] uploading file type=[pdf]
@@ -31,6 +31,26 @@ React app
 ## server
 
 Flask app
+
+- [x] Project structure For flask
+- [x] Requirement.txt
+- [x] JWT validation
+- [ ] DB { supabase }
+  - [ ] User table
+    - [ ] user_name
+    - [ ] files [file_id]
+    - [ ] File block storage
+- [ ] Message table | Not sure to implement this or not | it can be done in client local storage
+
+- [x] Api layer
+  - [ ] send message | POST params=[message, file, user_id,context?] call Ollama | gpt model | any llm
+  - [x] upload file | POST
+  - [ ] get All files | GET
+  - [ ] download file | GET
+- [ ] Dockerfile
+- [ ] Tests
+  - [ ] Unit tests
+- [ ] Deployment
 
 ## LLM
 
