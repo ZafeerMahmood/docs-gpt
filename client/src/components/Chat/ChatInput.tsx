@@ -6,6 +6,7 @@ import { uploadFileApi, chatApi } from "@/api";
 
 function ChatInput() {
   const chatStore = useChatStore((state) => state.chat);
+  const chatContext = useChatStore((state) => state.context);
   const loading = useChatStore((state) => state.loading);
   const chatMethods = useChat();
   const [inputValue, setInputValue] = useState("");
@@ -22,14 +23,17 @@ function ChatInput() {
   const handleUserInput = async () => {
     if (!inputValue) return;
     chatMethods.user(inputValue);
-    setInputValue("");
-    const response = await chatApi(inputValue);
+    const response = await chatApi({
+      message: inputValue,
+      context: chatContext,
+    });
     if (response.status === 200) {
       const data = await response.json();
       chatMethods.bot(data.message);
     } else {
       chatMethods.bot("LLM Error: Please try again later.");
     }
+    setInputValue("");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -51,12 +55,19 @@ function ChatInput() {
           if (response.status === 200) {
             const data = await response.json();
             chatMethods.bot(data.message);
+            chatMethods.context(data.context);
           } else {
-            chatMethods.bot("Error uploading file");
+            chatMethods.bot(
+              "Error: Failed to upload file. Please try again later."
+            );
           }
         } catch (error) {
-          console.error(error);
-          chatMethods.bot("Error uploading file");
+          console.error("Error:", error);
+          chatMethods.bot(
+            "Error: Failed to upload file due to an unexpected error."
+          );
+        } finally {
+          fileRef.current.value = "";
         }
       } else {
         chatMethods.bot("No file selected");

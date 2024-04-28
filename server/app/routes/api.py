@@ -1,20 +1,42 @@
 from app import app
 from flask import jsonify, request
+from werkzeug.utils import secure_filename
 from app.config import Config
 from app.utils import check_jwt
+import os
+import json
 
 API_VERSION = Config.API_VERSION
+PARSER = app.parser
+LLAMA = app.llama
+
+app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
+
+
+
+
+def llm_process_text(query: str, model: str,context):
+    llm_query = f"""<s>[INST{query} [/INST] </s>"""
+    try:
+        api={
+            "model": model,
+            "messages": context + [{"role": "user", "content": llm_query}],
+        }
+        response = LLAMA.run(api)
+        return response
+    except Exception as e:
+        print(f"Error: {e}")
+        return {"detail": str(e)}
 
 @app.route(f'/', methods=['GET'])
 def hello():
-    db='connected'
-    llm='connected'
     return jsonify({ 
         "server": 'running',
         "version": '1.0.0',
         "message": "Hello World!",
-        "db": db,
-        "llm": llm
+        "db":'connected',
+        "llm": str(LLAMA),
+        "parser":str(PARSER)
     }), 200
 
 
@@ -22,20 +44,41 @@ def hello():
 # file will be a pdf parse the pdf into text
 # save the text into a database
 # make a query of text to send to local language model
+# return the context of the local language model.
 @app.route(f'{API_VERSION}/upload', methods=['POST'])
 @check_jwt
 def upload():
-    if 'file' not in request.files:
-        return jsonify({"error": 'No file part'}), 400
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({"error": 'No selected file'}), 400
+    try:
+        if "file" not in request.files:
+            return jsonify({"error": 'No file part'}), 400
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({"error": 'No selected file'}), 400
+        if file:
+            file_path = os.path.join(app.config["UPLOAD_FOLDER"], file.filename)
+            file.save(file_path)
 
-    # You might want to add code here to save the file or process it.
-
-    return jsonify({
-        "message": 'File uploaded successfully'
-    }), 200
+            documents = PARSER.load_data(file_path)
+            os.remove(file_path)
+            print(documents[0].text)
+            if documents[0].text:
+                return jsonify({
+                    "context": [{
+                        "role": "user",
+                        "content": documents[0].text
+                    },{
+                        "role":"user", 
+                        "content":"when ever you answer a question please convert my social security number to a secure format."
+                    }] ,
+                    "message": "File uploaded successfully please ask any question"
+                }), 200
+            else:
+                return jsonify({
+                    "message": 'No text found in document'
+                }), 400
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)}), 500
 
 @app.route(f'{API_VERSION}/files', methods=['GET'])
 @check_jwt
@@ -50,18 +93,26 @@ def get_files():
         return jsonify({"error": str(e)}), 500
 
 
-# TODO: Implement file upload
-
-## pass the question to the llm and return the response
-## make a regex function to hide sensitive information.
 @app.route(f'{API_VERSION}/chat', methods=['POST'])
-# @check_jwt
+@check_jwt
 def llm():
     try:
         data = request.json
         message = data.get('message')
+        context=data.get('context')
+
+        if message is None:
+            return jsonify({"error": 'No message found'}), 400
+        
+        response = llm_process_text(message, "llama-7b-chat",context)
+        res=response.json()
+        answer=res['choices'][0]['message']['content']
+        if answer:
+            return jsonify({
+                "message": answer,
+            }), 200
         return jsonify({
-            "message": 'llm response'+ ' '+ message
+            "message": "Oops! I couldn't find any answer",
         }), 200
     except Exception as e:
         print(e)

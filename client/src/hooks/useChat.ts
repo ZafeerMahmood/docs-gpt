@@ -4,6 +4,7 @@ const useChat = () => {
   const setChat = useChatStore((state) => state.setChat);
   const setLoading = useChatStore((state) => state.setLoading);
   const setError = useChatStore((state) => state.setError);
+  const setContext = useChatStore((state) => state.setContext);
   const use = {
     user: (message: string) => {
       setChat({ message, sender: "user", time: new Date() });
@@ -16,6 +17,9 @@ const useChat = () => {
     error: (error: string) => {
       setLoading(false);
       setError(error);
+    },
+    context: (context: []) => {
+      setContext(context);
     },
   };
 

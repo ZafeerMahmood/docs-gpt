@@ -19,11 +19,17 @@ export const uploadFileApi = async (file: FormData) => {
   }
 };
 
-export const chatApi = async (message: string) => {
+export const chatApi = async ({
+  message,
+  context = [],
+}: {
+  message: string;
+  context: unknown;
+}) => {
   try {
     const response = await api.post({
       url: "chat",
-      data: { message },
+      data: { message, context },
     });
     return response;
   } catch (error) {

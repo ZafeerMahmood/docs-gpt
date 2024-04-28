@@ -8,12 +8,14 @@ interface themeStore {
 }
 
 interface chatStore {
+  context: [];
   error: string | null;
   loading: boolean;
   chat: IMessage[];
   setChat: (chat: IMessage) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
+  setContext: (context: []) => void;
 }
 
 interface userStore {
@@ -31,6 +33,7 @@ export const useChatStore = create<chatStore>((set) => ({
     can be used to save chat history to local storage and retrieve it
     plus be Used as Context for the llm
   */
+  context: [],
   error: null,
   loading: false,
   chat: [],
@@ -42,6 +45,9 @@ export const useChatStore = create<chatStore>((set) => ({
   },
   setError: (error) => {
     set({ error });
+  },
+  setContext: (context) => {
+    set({ context });
   },
 }));
 

@@ -22,16 +22,16 @@ Additionally, we have created a folder with filled sample W2s for you to test yo
 
 ### Requirements
 
-- Integration of a low-parameter LLM server (i.e. OpenAI vision model, open-source etc.) to enable chat functionality with the W-2 data.
+- Integration of a low-parameter LLM server (i.e. OpenAI vision model, open-source etc.) to enable chat functionality with the W-2 data. - [x]
 - A functional database to store user and W-2 data.
-- Frontend developed using ReactJS, NextJS preferred
-- Backend service created with Django/Python preferred
+- Frontend developed using ReactJS, NextJS preferred - [x]
+- Backend service created with Django/Python preferred - [x]
 - Docker implementation with a single 'compose up' command.
 - Deploy the project to a web-hosting site like Vercel or Netlify
 - Basic initialization scripts for creating users, loading data, etc.
 - A comprehensive README file documenting the setup, dependencies, and usage instructions.
-- Error handling
-- Hide social security number
+- Error handling - [x]
+- Hide social security number - [x]
 
 ### Wishlist
 

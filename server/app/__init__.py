@@ -10,7 +10,7 @@ CORS(app)
 llama = LlamaAPI(Config.LLAMA_API)
 app.llama = llama
 app.parser=LlamaParse(
-    api_key=Config.LL,
+    api_key=Config.LLAMA_PARSER,
     result_type="markdown",
 )
 

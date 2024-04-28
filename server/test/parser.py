@@ -59,11 +59,12 @@ prompt = """Give Summary of the document below it is a w-2 form so hide sensitiv
 llm_query = f"""<s>[INST]{prompt} [/INST] </s> [INST]{documents[0].text}[/INST]"""
 
 
-def llm_process_text(query: str, model: str,context=[]):
+def llm_process_text(query: str, model: str,context):
+    llm_query = f"""<s>[INST{query} [/INST] </s>"""
     try:
         api={
             "model": model,
-            "messages": context + [{"role": "user", "content": query}],
+            "messages": context + [{"role": "user", "content": llm_query}],
         }
         response = llama.run(api)
         return response
