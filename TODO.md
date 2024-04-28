@@ -21,6 +21,10 @@ React app
   - [x] ChatMessage
   - [x] ChatInput
   - [x] uploading file type=[pdf]
+  - [ ] file list
+  - [ ] get file urls
+  - [ ] download file
+  - [ ] add a react-markdown for chat
 - [x] Error handling / Error boundary
 - [ ] Tests
   - [ ] Unit tests
@@ -35,15 +39,15 @@ Flask app
 - [x] Project structure For flask
 - [x] Requirement.txt
 - [x] JWT validation
-- [ ] DB { supabase }
-  - [ ] User table
-    - [ ] user_name
-    - [ ] files [file_id]
-    - [ ] File block storage
+- [x] DB { supabase }
+  - [x] profiles table
+    - [x] user_id
+    - [x] files [file_id]
+    - [x] File block storage
 - [ ] Message table | Not sure to implement this or not | it can be done in client local storage
 
 - [x] Api layer
-  - [ ] send message | POST params=[message, file, user_id,context?] call Ollama | gpt model | any llm
+  - [x] send message | POST params=[message, file, user_id,context?] call Ollama | gpt model | any llm
   - [x] upload file | POST
   - [ ] get All files | GET
   - [ ] download file | GET
@@ -61,6 +65,7 @@ llm's to implement
 - [ ] llama | Most likely to implement provides $5 free credit.
 - [ ] turn out llama can't keep the context by itself, need to implement that.
   - [x] works with context now
+- [ ] see if llama can return the response as markdown | html
 
 ## overall
 

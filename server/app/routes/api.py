@@ -1,32 +1,14 @@
 from app import app
 from flask import jsonify, request
-from werkzeug.utils import secure_filename
 from app.config import Config
 from app.utils import check_jwt
 import os
-import json
+from app.services.llm import llm_process_text
 
 API_VERSION = Config.API_VERSION
 PARSER = app.parser
-LLAMA = app.llama
 
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
-
-
-
-
-def llm_process_text(query: str, model: str,context):
-    llm_query = f"""<s>[INST{query} [/INST] </s>"""
-    try:
-        api={
-            "model": model,
-            "messages": context + [{"role": "user", "content": llm_query}],
-        }
-        response = LLAMA.run(api)
-        return response
-    except Exception as e:
-        print(f"Error: {e}")
-        return {"detail": str(e)}
 
 @app.route(f'/', methods=['GET'])
 def hello():
@@ -35,8 +17,8 @@ def hello():
         "version": '1.0.0',
         "message": "Hello World!",
         "db":'connected',
-        "llm": str(LLAMA),
-        "parser":str(PARSER)
+        "llm": 'connected',
+        "parser": 'connected'
     }), 200
 
 

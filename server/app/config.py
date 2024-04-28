@@ -10,3 +10,4 @@ class Config:
     SUPABASE_ANON = os.getenv('SUPABASE_ANON')
     LLAMA_API= os.getenv('LLAMA_API')
     LLAMA_PARSER= os.getenv('LLAMA_PARSE')
+    SUPABASE_KEY= os.getenv('SUPABASE_KEY')
