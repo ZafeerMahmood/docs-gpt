@@ -1,4 +1,4 @@
-export type IAppTheme = "light" | "dark";
+export type IAppTheme = "black" | "lofi";
 
 export interface IMessage {
   message: string;

@@ -12,9 +12,9 @@ function Swap() {
   const handleTheme: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (!e) return;
     if (e.target.checked) {
-      setTheme("dark");
+      setTheme("black");
     } else {
-      setTheme("light");
+      setTheme("lofi");
     }
   };
   return (

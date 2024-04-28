@@ -5,6 +5,8 @@ const useChat = () => {
   const setLoading = useChatStore((state) => state.setLoading);
   const setError = useChatStore((state) => state.setError);
   const setContext = useChatStore((state) => state.setContext);
+  const clearChat = useChatStore((state) => state.clearChat);
+
   const use = {
     user: (message: string) => {
       setChat({ message, sender: "user", time: new Date() });
@@ -20,6 +22,9 @@ const useChat = () => {
     },
     context: (context: []) => {
       setContext(context);
+    },
+    clear: () => {
+      clearChat();
     },
   };
 

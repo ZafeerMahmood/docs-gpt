@@ -16,6 +16,7 @@ interface chatStore {
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   setContext: (context: []) => void;
+  clearChat: () => void;
 }
 
 interface userStore {
@@ -32,6 +33,7 @@ export const useChatStore = create<chatStore>((set) => ({
   /*Initial state of the chat
     can be used to save chat history to local storage and retrieve it
     plus be Used as Context for the llm
+    make it persistent by saving it to session storage
   */
   context: [],
   error: null,
@@ -49,10 +51,13 @@ export const useChatStore = create<chatStore>((set) => ({
   setContext: (context) => {
     set({ context });
   },
+  clearChat: () => {
+    set({ chat: [] });
+  },
 }));
 
 export const useThemeStore = create<themeStore>((set) => ({
-  theme: "dark",
+  theme: "black",
   setTheme: (theme) => {
     set({ theme });
   },
