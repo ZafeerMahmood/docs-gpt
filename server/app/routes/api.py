@@ -11,6 +11,7 @@ PARSER = app.parser
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
 db=DB()
 
+#* done
 @app.route(f'/', methods=['GET'])
 def hello():
     return jsonify({ 

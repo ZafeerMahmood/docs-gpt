@@ -25,6 +25,17 @@ export const post = async ({ url, data }: { url: string; data: unknown }) => {
   return response;
 };
 
+export const remove = async ({ url }: { url: string }) => {
+  const token = getToken();
+  const response = await fetch(`${baseUrl}/${url}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
+};
+
 export const uploadFile = async ({
   url,
   file,

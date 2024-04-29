@@ -15,7 +15,7 @@ React app
   - [x] JWT authorization headers
   - [x] send file to server | POST
   - [x] send message | POST params=[message, user_id,context]
-  - [ ] get All files | GET
+  - [x] get All files | GET
 - [ ] husky pre-commit hooks
 - [x] UI components
   - [x] ChatMessage
@@ -49,8 +49,9 @@ Flask app
 - [x] Api layer
   - [x] send message | POST params=[message, file, user_id,context?] call Ollama | gpt model | any llm
   - [x] upload file | POST
-  - [ ] get All files | GET
-  - [ ] download file | GET
+  - [x] get All files | GET
+  - [x] download file | GET
+  - [x] delete file | DELETE
 - [ ] Dockerfile
 - [ ] Tests
   - [ ] Unit tests
@@ -65,7 +66,9 @@ llm's to implement
 - [ ] llama | Most likely to implement provides $5 free credit.
 - [ ] turn out llama can't keep the context by itself, need to implement that.
   - [x] works with context now
-- [ ] see if llama can return the response as markdown | html
+- [
+
+] see if llama can return the response as markdown | html
 
 ## overall
 

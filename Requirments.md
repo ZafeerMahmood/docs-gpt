@@ -23,7 +23,7 @@ Additionally, we have created a folder with filled sample W2s for you to test yo
 ### Requirements
 
 - Integration of a low-parameter LLM server (i.e. OpenAI vision model, open-source etc.) to enable chat functionality with the W-2 data. - [x]
-- A functional database to store user and W-2 data.
+- A functional database to store user and W-2 data.-[x]
 - Frontend developed using ReactJS, NextJS preferred - [x]
 - Backend service created with Django/Python preferred - [x]
 - Docker implementation with a single 'compose up' command.

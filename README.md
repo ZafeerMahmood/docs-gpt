@@ -12,3 +12,18 @@ The web application should let users chat and ask specific questions about their
 - Node
 - python
 - docker
+
+## supabase
+
+- enable auth email.
+- enable storage bucket name `TaxGPT`
+
+```sql
+create table public.profiles (
+  id uuid not null references auth.users on delete cascade,
+  file_name text,
+  file_content text,
+  primary key (id)
+);
+
+```
