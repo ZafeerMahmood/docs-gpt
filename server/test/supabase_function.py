@@ -53,16 +53,16 @@ def create_url(supabase, id, filename):
 
 userId='bd91fcc3-c8c9-4132-8967-605d2e3d4ea7'
 res=''
-res= upload_pdf(supabase, './w2.pdf', userId,'w2.pdf')
-print(res)
-res= delete_file(supabase,'123','w2.pdf')
-print(res)
+# res= upload_pdf(supabase, './w2.pdf', userId,'w2.pdf')
+# print(res)
+# res= delete_file(supabase,'123','w2.pdf')
+# print(res)
 res= create_url(supabase, userId, 'w2.pdf')
 print(res)
-res= add_file(supabase,userId,'w2.pdf','scanned content of w2.pdf')
-print(res)
-res= get_files(supabase,userId)
-print(res)
-res= delete_file(supabase,userId,'w2.pdf')
-print(res)
+# res= add_file(supabase,userId,'w2.pdf','scanned content of w2.pdf')
+# print(res)
+# res= get_files(supabase,userId)
+# print(res)
+# res= delete_file(supabase,userId,'w2.pdf')
+# print(res)
 

@@ -12,7 +12,7 @@ class DB:
             print(e)
             return None
 
-    def add_file(self, id, file_name, file_content):
+    def add_profile(self, id, file_name, file_content):
         try:
             res = self.supabase.table('profiles').upsert({'id': id, "file_name": file_name, "file_content": file_content}).execute()
             return res
@@ -20,7 +20,7 @@ class DB:
             print(e)
             return None
 
-    def delete_file(self, id, file_name):
+    def delete_profile(self, id, file_name):
         try:
             res = self.supabase.table('profiles').delete().eq('file_name', file_name).eq('id', id).execute()
             fileresponse = self.supabase.storage.from_('TaxGPT').remove(f'{id}/{file_name}')

@@ -2,7 +2,7 @@ from app import app
 llama=app.llama
 
 def llm_process_text(query: str, model: str,context):
-    llm_query = f"""<s>[INST{query} [/INST] </s>"""
+    llm_query = f"""<s>[INST]{query} [/INST] </s>"""
     try:
         api={
             "model": model,
@@ -21,7 +21,7 @@ def get_context(document:str):
              "role": "user", "content": document
             },{
               "role":"user", 
-              "content":"when ever you answer a question please convert my social security number to a secure format."
+              "content":"always provide me with a summary of the document also convert the social security number to XXX-XX-XXXX format."
             }]
 
 

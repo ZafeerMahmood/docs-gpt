@@ -3,15 +3,13 @@ from flask import jsonify, request
 from app.config import Config
 from app.utils import check_jwt
 import os
-from app.services.llm import llm_process_text
+from app.services.llm import llm_process_text, get_context
 from app.services.db import  DB
 
 API_VERSION = Config.API_VERSION
 PARSER = app.parser
-db=DB()
-
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
-
+db=DB()
 
 @app.route(f'/', methods=['GET'])
 def hello():
@@ -24,11 +22,12 @@ def hello():
         "parser": 'connected'
     }), 200
 
-
+#* done
 @app.route(f'{API_VERSION}/upload', methods=['POST'])
 @check_jwt
-def upload():
+def upload(validated_data=None):
     try:
+        user_id=validated_data['sub']
         if "file" not in request.files:
             return jsonify({"error": 'No file part'}), 400
         file = request.files['file']
@@ -39,20 +38,15 @@ def upload():
             file.save(file_path)
 
             documents = PARSER.load_data(file_path)
-            db.upload_pdf(file_path, 1, file.filename)
+            db.upload_pdf(file_path, user_id, file.filename)
+            
             os.remove(file_path)
-            print(documents[0].text)
+
             if documents[0].text:
-                # TODO save the file to block storage
-                # TODO save info to db.
+                db.add_profile(user_id,file.filename,documents[0].text)
+                context=get_context(documents[0].text)
                 return jsonify({
-                    "context": [{
-                        "role": "user",
-                        "content": documents[0].text
-                    },{
-                        "role":"user", 
-                        "content":"when ever you answer a question please convert my social security number to a secure format."
-                    }] ,
+                    "context":context,
                     "message": "File uploaded successfully please ask any question"
                 }), 200
             else:
@@ -63,34 +57,35 @@ def upload():
         print(e)
         return jsonify({"error": str(e)}), 500
 
+#* done
 @app.route(f'{API_VERSION}/files', methods=['GET'])
 @check_jwt
-def get_files():
+def get_files(validated_data=None):
     try:
-    # TODO: get_files function should retrieve all the
+        db_data=db.get_files(validated_data['sub'])
         return jsonify({
+            "data": db_data,
             "message": 'Files retrieved successfully'
         }), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
+#* done
 @app.route(f'{API_VERSION}/chat', methods=['POST'])
 @check_jwt
 def llm(validated_data=None):
     try:
         print(validated_data)
-        # data = request.json
-        # message = data.get('message')
-        # context=data.get('context')
+        data = request.json
+        message = data.get('message')
+        context=data.get('context')
 
-        # if message is None:
-        #     return jsonify({"error": 'No message found'}), 400
+        if message is None:
+            return jsonify({"error": 'No message found'}), 400
         
-        # response = llm_process_text(message, "llama-7b-chat",context)
-        # res=response.json()
-        # answer=res['choices'][0]['message']['content']
-        answer="I am sorry I am not able to answer that question"
+        response = llm_process_text(message, "llama-7b-chat",context)
+        res=response.json()
+        answer=res['choices'][0]['message']['content']
         if answer:
             return jsonify({
                 "message": answer,
@@ -102,22 +97,35 @@ def llm(validated_data=None):
         print(e)
         return jsonify({"error": str(e)}), 500
 
-
-@app.route(f'{API_VERSION}', methods=['GET'])
+#*done
+@app.route(f'{API_VERSION}/download/<file_id>', methods=['GET'])
 @check_jwt
-def get_file_url(validated_data=None):
+def get_file_url(validated_data=None,file_id:str=None): 
     try:
-        args = request.args
-        file_id = args.get('file_id')
-        user_id = args.get('user_id')
-
+        user_id = validated_data['sub']
+        print(user_id,file_id)
         if file_id is None and user_id is None:
-            return jsonify({"error": 'No file_id or user_id found'}), 400
-
+            return jsonify({"error": 'No file id or user id found'}), 400
+        url = db.create_url(user_id, file_id)
         return jsonify({
-            "message": 'File url retrieved successfully'
+            "message": url
         }), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-copy='bd91fcc3-c8c9-4132-8967-605d2e3d4ea7'
+    
+#*done
+@app.route(f'{API_VERSION}/delete/<file_id>', methods=['DELETE'])
+@check_jwt
+def delete_file(validated_data=None,file_id:str=None):
+    try:
+        user_id = validated_data['sub']
+        if file_id is None and user_id is None:
+            return jsonify({"error": 'No file id or user id found'}), 400
+        
+        db.delete_profile(user_id,file_id)
+        return jsonify({
+            "message": 'File deleted successfully'
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
