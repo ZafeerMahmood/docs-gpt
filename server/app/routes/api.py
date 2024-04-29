@@ -44,6 +44,8 @@ def upload():
             os.remove(file_path)
             print(documents[0].text)
             if documents[0].text:
+                # TODO save the file to block storage
+                # TODO save info to db.
                 return jsonify({
                     "context": [{
                         "role": "user",
@@ -66,8 +68,7 @@ def upload():
 @check_jwt
 def get_files():
     try:
-    # TODO: Implement file upload
-    # files from db and return them.
+    # TODO: get_files function should retrieve all the
         return jsonify({
             "message": 'Files retrieved successfully'
         }), 200
@@ -100,4 +101,21 @@ def llm():
         print(e)
         return jsonify({"error": str(e)}), 500
 
+
+@app.route(f'{API_VERSION}', methods=['GET'])
+@check_jwt
+def get_file_url():
+    try:
+        args = request.args
+        file_id = args.get('file_id')
+        user_id = args.get('user_id')
+
+        if file_id is None and user_id is None:
+            return jsonify({"error": 'No file_id or user_id found'}), 400
+
+        return jsonify({
+            "message": 'File url retrieved successfully'
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
