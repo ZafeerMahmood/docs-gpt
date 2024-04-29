@@ -4,11 +4,14 @@ from app.config import Config
 from app.utils import check_jwt
 import os
 from app.services.llm import llm_process_text
+from app.services.db import  DB
 
 API_VERSION = Config.API_VERSION
 PARSER = app.parser
+db=DB()
 
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
+
 
 @app.route(f'/', methods=['GET'])
 def hello():
@@ -22,11 +25,6 @@ def hello():
     }), 200
 
 
-# TODO: Implement file upload
-# file will be a pdf parse the pdf into text
-# save the text into a database
-# make a query of text to send to local language model
-# return the context of the local language model.
 @app.route(f'{API_VERSION}/upload', methods=['POST'])
 @check_jwt
 def upload():
@@ -41,6 +39,7 @@ def upload():
             file.save(file_path)
 
             documents = PARSER.load_data(file_path)
+            db.upload_pdf(file_path, 1, file.filename)
             os.remove(file_path)
             print(documents[0].text)
             if documents[0].text:
@@ -78,18 +77,20 @@ def get_files():
 
 @app.route(f'{API_VERSION}/chat', methods=['POST'])
 @check_jwt
-def llm():
+def llm(validated_data=None):
     try:
-        data = request.json
-        message = data.get('message')
-        context=data.get('context')
+        print(validated_data)
+        # data = request.json
+        # message = data.get('message')
+        # context=data.get('context')
 
-        if message is None:
-            return jsonify({"error": 'No message found'}), 400
+        # if message is None:
+        #     return jsonify({"error": 'No message found'}), 400
         
-        response = llm_process_text(message, "llama-7b-chat",context)
-        res=response.json()
-        answer=res['choices'][0]['message']['content']
+        # response = llm_process_text(message, "llama-7b-chat",context)
+        # res=response.json()
+        # answer=res['choices'][0]['message']['content']
+        answer="I am sorry I am not able to answer that question"
         if answer:
             return jsonify({
                 "message": answer,
@@ -104,7 +105,7 @@ def llm():
 
 @app.route(f'{API_VERSION}', methods=['GET'])
 @check_jwt
-def get_file_url():
+def get_file_url(validated_data=None):
     try:
         args = request.args
         file_id = args.get('file_id')
@@ -119,3 +120,4 @@ def get_file_url():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+copy='bd91fcc3-c8c9-4132-8967-605d2e3d4ea7'

@@ -21,7 +21,7 @@ function Chat() {
               }`}
             >
               <div className="chat-header">
-                {msg.sender === "bot" ? "Tax GPT" : "You"}
+                {msg.sender === "bot" ? "TAX-GPT" : "YOU"}
               </div>
               {message(msg.message)}
             </div>

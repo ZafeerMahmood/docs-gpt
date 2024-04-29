@@ -23,6 +23,7 @@ def check_jwt(f):
             return jsonify({'message': 'Invalid token format'}), 401
         token = parts[1]
         validated_data = verify_token(token)
+        kwargs['validated_data'] = validated_data
         if not validated_data:
             return jsonify({'message': 'Invalid token'}), 401
 
