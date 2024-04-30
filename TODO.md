@@ -73,7 +73,7 @@ llm's to implement
 
 - [ ] Documentation
 - [ ] README
-- [ ] docker-compose
+- [x] docker-compose
 - [ ] startup scripts
   - [ ] one for that requires to clone and .env file | ignore that
   - [ ] one for that requires to run docker-compose up in end run a startup script to create user and load data

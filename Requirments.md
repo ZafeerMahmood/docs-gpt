@@ -26,7 +26,7 @@ Additionally, we have created a folder with filled sample W2s for you to test yo
 - A functional database to store user and W-2 data.-[x]
 - Frontend developed using ReactJS, NextJS preferred - [x]
 - Backend service created with Django/Python preferred - [x]
-- Docker implementation with a single 'compose up' command.
+- Docker implementation with a single 'compose up' command. - [x]
 - Deploy the project to a web-hosting site like Vercel or Netlify
 - Basic initialization scripts for creating users, loading data, etc.
 - A comprehensive README file documenting the setup, dependencies, and usage instructions.
@@ -38,7 +38,7 @@ Additionally, we have created a folder with filled sample W2s for you to test yo
 - Enhanced UI/UX design.
 - Unit Testing
 - Show social security number after the text confirmation
-- Implementation of security measures such as file encryption and user authentication.
+- Implementation of security measures such as file encryption and user authentication. - [x] auth is implemented
 - The Docker setup is configured for both development and production environments.
 - Use of a vector database and integration of a knowledge graph for advanced data handling.
 

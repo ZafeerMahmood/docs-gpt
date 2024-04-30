@@ -7,3 +7,4 @@ llama-index== 0.10.23
 llamaapi==0.1.36
 llama-parse==0.4.2
 supabase==2.4.3
+gunicorn==22.0.0
