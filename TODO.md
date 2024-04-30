@@ -71,16 +71,16 @@ llm's to implement
 
 ## overall
 
-- [ ] Documentation
-- [ ] README
+- [x] Documentation
+- [x] README
 - [x] docker-compose
 - [ ] startup scripts
   - [ ] one for that requires to clone and .env file | ignore that
   - [ ] one for that requires to run docker-compose up in end run a startup script to create user and load data
-- [ ] Deployment
+- [x] Deployment
   - [ ] as a single flask that returns react build dist
   - or
-  - [ ] separate app for client and server
+  - [x] separate app for client and server
   - Note sure for now
 
 ## Auth Test
