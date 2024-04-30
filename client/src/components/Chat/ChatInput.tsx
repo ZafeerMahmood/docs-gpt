@@ -82,6 +82,7 @@ function ChatInput() {
       )}
       <label className="input input-bordered flex items-center gap-2 input-primary">
         <input
+          id="chat-input"
           type="text"
           className="grow "
           placeholder="Type a message"
@@ -91,6 +92,7 @@ function ChatInput() {
           onKeyDown={handleKeyDown}
         />
         <input
+          id="file-upload"
           type="file"
           accept=".pdf"
           disabled={loading}
@@ -98,7 +100,10 @@ function ChatInput() {
           style={{ display: "none" }}
           ref={fileRef}
         />
-        <button onClick={() => fileRef.current && fileRef.current.click()}>
+        <button
+          id="upload-btn"
+          onClick={() => fileRef.current && fileRef.current.click()}
+        >
           <kbd className="kbd kbd-md border-accent">
             <UploadIcon />
           </kbd>
