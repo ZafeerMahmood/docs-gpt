@@ -62,8 +62,8 @@ SUPABASE_URL=<In Supabase Dashboard>
 SUPABASE_ANON=<In Supabase Dashboard>
 SUPABASE_JWT=<In Supabase Dashboard>
 SUPABASE_KEY=<<In Supabase Dashboard>>
-LLAMA_API=[llama-api](https://console.llama-api.com/)
-LLAMA_PARSE=[llama-index](https://cloud.llamaindex.ai/api-key)
+LLAMA_API=<llama-api>
+LLAMA_PARSE=<llama-index>
 ```
 
 ### Running the app locally with git
