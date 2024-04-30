@@ -29,7 +29,7 @@ React app
 - [ ] Tests
   - [ ] Unit tests
   - [ ] Integration tests
-- [ ] Dockerfile
+- [x] Dockerfile
 - [ ] Deployment
 
 ## server
@@ -52,7 +52,8 @@ Flask app
   - [x] get All files | GET
   - [x] download file | GET
   - [x] delete file | DELETE
-- [ ] Dockerfile
+- [ ] logging
+- [x] Dockerfile
 - [ ] Tests
   - [ ] Unit tests
 - [ ] Deployment
@@ -66,9 +67,7 @@ llm's to implement
 - [ ] llama | Most likely to implement provides $5 free credit.
 - [ ] turn out llama can't keep the context by itself, need to implement that.
   - [x] works with context now
-- [
-
-] see if llama can return the response as markdown | html
+- [ ] see if llama can return the response as markdown | html
 
 ## overall
 

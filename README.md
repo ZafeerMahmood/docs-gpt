@@ -27,3 +27,9 @@ create table public.profiles (
 );
 
 ```
+
+## docker-compose.yml
+
+```bash
+docker-compose up -d
+```

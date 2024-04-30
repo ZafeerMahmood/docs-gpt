@@ -10,7 +10,7 @@ if Config.SUPABASE_JWT is None:
 if Config.SUPABASE_URL is None:
     raise Exception('SUPABASE_URL not found in .env file')
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5001, host='0.0.0.0')
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5555)
 
 

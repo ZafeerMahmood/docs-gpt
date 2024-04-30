@@ -1,0 +1,16 @@
+version: "1.0.0"
+
+services:
+  taxgpt-backend:
+    image: zafeermahmood/taxgpt-backend:latest
+    container_name: taxgpt-backend
+    ports:
+      - "5555:5555"
+    restart: always
+
+  taxgpt-frontend:
+    image: zafeermahmood/taxgpt-frontend:latest
+    container_name: taxgpt-frontend
+    ports:
+      - "3030:3030"
+    restart: always
