@@ -28,8 +28,8 @@ Additionally, we have created a folder with filled sample W2s for you to test yo
 - Backend service created with Django/Python preferred - [x]
 - Docker implementation with a single 'compose up' command. - [x]
 - Deploy the project to a web-hosting site like Vercel or Netlify - [x]
-- Basic initialization scripts for creating users, loading data, etc.
-- A comprehensive README file documenting the setup, dependencies, and usage instructions.
+- Basic initialization scripts for creating users, loading data, etc.-[x]
+- A comprehensive README file documenting the setup, dependencies, and usage instructions.-[x]
 - Error handling - [x]
 - Hide social security number - [x]
 
