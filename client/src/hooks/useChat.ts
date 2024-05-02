@@ -7,7 +7,7 @@ const useChat = () => {
   const setContext = useChatStore((state) => state.setContext);
   const clearChat = useChatStore((state) => state.clearChat);
 
-  const use = {
+  return {
     user: (message: string) => {
       setChat({ message, sender: "user", time: new Date() });
       setLoading(true);
@@ -27,8 +27,6 @@ const useChat = () => {
       clearChat();
     },
   };
-
-  return use;
 };
 
 export { useChat };
