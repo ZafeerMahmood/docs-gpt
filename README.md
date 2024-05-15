@@ -1,6 +1,4 @@
-# TAX GPT Assignment
-
-taxGPT take home assignment
+> Depricated Working on [Docs-pdf](https://github.com/ZafeerMahmood/taxgptAssignment/tree/docs-pdf) 
 
 ## Table of Contents
 
@@ -106,7 +104,7 @@ python3 main.py | py main.py
 ```
 
 ## Demo | Deployment
-
+> no longer available 
 - client [demo](https://taxgptassignment.pages.dev/)
 - server [demo](https://taxgpt-backend-jhgyr6ocxa-uc.a.run.app/)
 
